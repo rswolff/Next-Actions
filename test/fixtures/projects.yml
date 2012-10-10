@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  due: 2012-10-10
+  sort: 1
+  state: MyString
+
+two:
+  name: MyString
+  due: 2012-10-10
+  sort: 1
+  state: MyString

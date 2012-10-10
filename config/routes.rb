@@ -1,4 +1,9 @@
 Next::Application.routes.draw do
+
+  resources :projects do
+    resources :next_actions
+  end
+
   get "pages/home"
 
   get "user_sessions/new"
@@ -7,7 +12,7 @@ Next::Application.routes.draw do
 
   get "user_sessions/destroy"
 
-  root :to => 'pages#home'
+  root :to => 'projects#index'
 
   resources :users
 

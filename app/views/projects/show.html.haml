@@ -1,0 +1,18 @@
+%h1= @project.name
+
+%h3 Next
+
+%table.table.table-borderd
+  %tr
+    %th Name
+    %th Due
+    %th Actions
+    - @project.next_actions.each do |next_action|
+      %tr
+        %td= next_action.name
+        %td= next_action.due
+        %td
+          = link_to "Cancel", nil
+          = link_to "Delete", next_action, method: 'delete'
+
+= link_to 'New Action', new_project_next_action_path(@project), class: 'btn'

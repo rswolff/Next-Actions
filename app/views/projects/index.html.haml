@@ -1,0 +1,17 @@
+%h1 Projects
+%p= link_to 'New project', new_project_path, class: 'btn btn-primary'
+
+%table.table
+  %thead
+    %tr
+      %th Name
+      %th Due
+      %th{:colspan => 2}= t 'actions'
+  
+  %tbody
+    - for project in @projects
+      %tr{ :class => cycle(:odd, :even) }
+        %td= link_to project.name, project
+        %td= project.due
+        %td.action= link_to 'edit', edit_project_path(project)
+        %td.action= link_to 'destroy', project, :confirm => 'Are you sure?', :method => :delete

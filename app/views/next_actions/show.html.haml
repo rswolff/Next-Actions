@@ -1,0 +1,14 @@
+%h1 Show next_action
+%p
+  = link_to 'back', next_actions_path, class: 'btn'
+  = link_to 'edit', edit_next_action_path(@next_action), class: 'btn primary'
+
+%dl
+  %dt= NextAction.human_attribute_name :name
+  %dd= @next_action.name
+  %dt= NextAction.human_attribute_name :due
+  %dd= @next_action.due
+  %dt= NextAction.human_attribute_name :sort
+  %dd= @next_action.sort
+  %dt= NextAction.human_attribute_name :state
+  %dd= @next_action.state
