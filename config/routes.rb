@@ -12,7 +12,7 @@ Next::Application.routes.draw do
 
   get "user_sessions/destroy"
 
-  root :to => 'projects#index'
+  root :to => 'next_actions#index'
 
   resources :users
 

@@ -1,22 +1,17 @@
-%h1 next_actions
-%p= link_to 'New next_action', new_next_action_path, class: 'btn primary'
-
-%table.table.table-bordered.table-striped
+%h3 Next Actions
+%table.table
   %thead
     %tr
+      %th Project
       %th= NextAction.human_attribute_name :name
       %th= NextAction.human_attribute_name :due
-      %th= NextAction.human_attribute_name :sort
-      %th= NextAction.human_attribute_name :state
-      %th{:colspan => 3}= t 'actions'
+      %th{:colspan => 2} Actions
   
   %tbody
     - for next_action in @next_actions
       %tr{ :class => cycle(:odd, :even) }
+        %td= link_to next_action.project.name, project_path(next_action.project)
         %td= next_action.name
         %td= next_action.due
-        %td= next_action.sort
-        %td= next_action.state
-        %td.action= link_to 'show', next_action
         %td.action= link_to 'edit', edit_next_action_path(next_action)
-        %td.action= link_to 'destroy', next_action, :confirm => 'Are you sure?', :method => :delete
+        %td.action= link_to 'delete', next_action, :confirm => 'Are you sure?', :method => :delete
