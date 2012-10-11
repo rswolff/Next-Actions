@@ -24,13 +24,13 @@
     %th Name
     %th Due
     %th Actions
-    - @project.next_actions.each do |next_action|
+    - @project.current_next_actions.each do |next_action|
       %tr
         %td= next_action.name
         %td= next_action.due
         %td
           .btn-group
-            %button.btn{class: 'btn-small'} Complete
+            = link_to "Complete", complete_next_action_path(next_action), class: 'btn btn-small'
             %button.btn.dropdown-toggle{:'data-toggle'=> 'dropdown', class: 'btn-small'}
               .caret
             %ul.dropdown-menu

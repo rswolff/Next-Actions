@@ -6,6 +6,7 @@
     %tr
       %th Name
       %th Due
+      %th{style: 'text-align: center'} Next Actions
       %th{:colspan => 2} Actions
   
   %tbody
@@ -13,5 +14,6 @@
       %tr{ :class => cycle(:odd, :even) }
         %td= link_to project.name, project
         %td= project.due
+        %td{style: 'text-align: center'}= project.next_actions.count
         %td.action= link_to 'edit', edit_project_path(project)
         %td.action= link_to 'destroy', project, :confirm => 'Are you sure?', :method => :delete

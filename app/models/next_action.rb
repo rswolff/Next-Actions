@@ -1,6 +1,6 @@
 class NextAction < ActiveRecord::Base
   attr_accessible :due, :name, :sort, :state, :project_id
-  belongs_to :project
+  belongs_to :project, :counter_cache => true
 
   validates_presence_of :name
 

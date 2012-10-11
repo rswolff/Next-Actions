@@ -13,4 +13,8 @@ class Project < ActiveRecord::Base
   		transition :current => :canceled
   	end
   end
+
+  def current_next_actions
+    next_actions.where(state: 'current')
+  end
 end

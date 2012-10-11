@@ -3,7 +3,7 @@ class NextActionsController < ApplicationController
   # GET /next_actions
   # GET /next_actions.json
   def index
-    @next_actions = NextAction.all
+    @next_actions = NextAction.where(state: 'current')
     @next_action = NextAction.new
 
     respond_to do |format|
@@ -45,7 +45,7 @@ class NextActionsController < ApplicationController
   def create
     @next_action = NextAction.new(params[:next_action])
     @next_action.due = Chronic.parse(params[:next_action][:due])
-    
+
     if params[:project_id]
       @next_action.project_id = params[:project_id] 
     end
@@ -101,5 +101,9 @@ class NextActionsController < ApplicationController
   def complete
     @next_action = NextAction.find(params[:id])
     @next_action.complete
+
+    respond_to do |format|
+      format.html { redirect_to @next_action.project, notice: "#{@next_action.name} has be completed."}
+    end
   end
 end
