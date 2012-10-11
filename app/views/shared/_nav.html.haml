@@ -3,11 +3,11 @@
     .container
       =link_to "Backlog", root_path, {:class => 'brand'}
       %ul.nav
-        %li= link_to "New Project", new_project_path
+        %li= link_to "Projects", projects_path
         %li.dropdown
           =link_to nil, {:class => 'dropdown-toggle', :'data-toggle' => 'dropdown', :'data-target' => "#"} do
             %i.icon-calendar.icon-white
-            New Action For...
+            New Project Action
             %b.caret
           %ul.dropdown-menu
             - Project.all.each do |project|

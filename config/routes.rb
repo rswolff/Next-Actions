@@ -1,8 +1,19 @@
 Next::Application.routes.draw do
 
   resources :projects do
-    resources :next_actions
+    resources :next_actions, shallow: true do 
+      member do
+        get 'cancel'
+        get 'complete'
+      end
+    end
+    member do
+      get 'cancel'
+      get 'complete'
+    end
   end
+
+  post "next_actions" => 'next_actions#create'
 
   get "pages/home"
 

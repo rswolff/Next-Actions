@@ -4,6 +4,7 @@ class NextActionsController < ApplicationController
   # GET /next_actions.json
   def index
     @next_actions = NextAction.all
+    @next_action = NextAction.new
 
     respond_to do |format|
       format.html # index.html.erb
@@ -44,6 +45,10 @@ class NextActionsController < ApplicationController
   def create
     @next_action = NextAction.new(params[:next_action])
     @next_action.due = Chronic.parse(params[:next_action][:due])
+    
+    if params[:project_id]
+      @next_action.project_id = params[:project_id] 
+    end
 
     respond_to do |format|
       if @next_action.save
@@ -79,8 +84,22 @@ class NextActionsController < ApplicationController
     @next_action.destroy
 
     respond_to do |format|
-      format.html { redirect_to next_actions_url }
+      format.html { redirect_to @next_action.project, notice: "#{@next_action.name} was deleted" }
       format.json { head :no_content }
     end
+  end
+
+  def cancel
+    @next_action = NextAction.find(params[:id])
+    @next_action.cancel
+
+    respond_to do |format|
+      format.html { redirect_to @next_action.project, notice: "#{@next_action.name} has be canceled."}
+    end
+  end
+
+  def complete
+    @next_action = NextAction.find(params[:id])
+    @next_action.complete
   end
 end
