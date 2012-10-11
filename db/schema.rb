@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121010185908) do
+ActiveRecord::Schema.define(:version => 20121011031313) do
 
   create_table "next_actions", :force => true do |t|
     t.string   "name"
@@ -28,8 +28,9 @@ ActiveRecord::Schema.define(:version => 20121010185908) do
     t.date     "due"
     t.integer  "sort"
     t.string   "state"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.string   "abbreviation"
   end
 
   create_table "users", :force => true do |t|

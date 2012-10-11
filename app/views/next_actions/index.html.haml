@@ -10,7 +10,7 @@
   %tbody
     - for next_action in @next_actions
       %tr{ :class => cycle(:odd, :even) }
-        %td= link_to next_action.project.name, project_path(next_action.project)
+        %td= link_to next_action.project.abbreviation, project_path(next_action.project), rel: 'tooltip', title: "#{next_action.project.name}"
         %td= next_action.name
         %td= next_action.due
         %td

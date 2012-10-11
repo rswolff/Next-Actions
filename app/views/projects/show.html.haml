@@ -3,7 +3,7 @@
 .well
   = form_for([@project, @next_action], html: {class: 'form-inline'}) do |f|
     - if @next_action.errors.any?
-      #errorExplanation.alert-message.block-message.error
+      #errorExplanation.alert.alert-error
         %h2= "#{pluralize(@next_action.errors.count, 'error')} prohibited this next_action from being saved:"
         %ul
           - @next_action.errors.full_messages.each do |msg|
