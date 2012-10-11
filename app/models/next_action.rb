@@ -3,4 +3,14 @@ class NextAction < ActiveRecord::Base
   belongs_to :project
 
   validates_presence_of :name
+
+  state_machine :state, :initial => :current do 
+  	event :complete do
+  		transition :current => :completed
+  	end
+
+  	event :cancel do
+  		transition :current => :canceled
+  	end
+  end
 end

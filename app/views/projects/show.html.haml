@@ -1,7 +1,20 @@
-%h1= @project.name
+%h1#project_name= @project.name
 
-%h3 Next
+.well
+  = form_for([@project, @next_action], html: {class: 'form-inline'}) do |f|
+    - if @next_action.errors.any?
+      #errorExplanation.alert-message.block-message.error
+        %h2= "#{pluralize(@next_action.errors.count, 'error')} prohibited this next_action from being saved:"
+        %ul
+          - @next_action.errors.full_messages.each do |msg|
+            %li= msg     
+    = f.text_field :name, placeholder: 'Name'
+    = f.text_field :due, placeholder: 'Due', class: 'input-small'
+    = f.hidden_field :project_id
+    = f.submit 'Submit', class: 'btn btn-primary'
 
+
+%h3 Next Actions
 %table.table.table-borderd
   %tr
     %th Name
@@ -13,5 +26,3 @@
         %td= next_action.due
         %td= link_to "Cancel", nil
         %td= link_to "Delete", next_action, method: 'delete'
-
-= link_to 'New Action', new_project_next_action_path(@project), class: 'btn'

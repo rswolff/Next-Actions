@@ -1,11 +1,11 @@
 %h3 Next Actions
-%table.table
+%table.table.table-hover
   %thead
     %tr
       %th Project
       %th= NextAction.human_attribute_name :name
       %th= NextAction.human_attribute_name :due
-      %th{:colspan => 2} Actions
+      %th Actions
   
   %tbody
     - for next_action in @next_actions
@@ -13,5 +13,11 @@
         %td= link_to next_action.project.name, project_path(next_action.project)
         %td= next_action.name
         %td= next_action.due
-        %td.action= link_to 'edit', edit_next_action_path(next_action)
-        %td.action= link_to 'delete', next_action, :confirm => 'Are you sure?', :method => :delete
+        %td
+          .btn-group
+            %button.btn{class: 'btn-small'} Complete
+            %button.btn.dropdown-toggle{:'data-toggle'=> 'dropdown', class: 'btn-small'}
+              .caret
+            %ul.dropdown-menu
+              %li= link_to "Cancel", nil
+              %li= link_to "Complete", nil
